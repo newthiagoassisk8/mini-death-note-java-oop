@@ -2,14 +2,14 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
 class Human {
-    public String name;
+    protected String name;
     private boolean isAlive;
 
     Human (String name) {
         this.name = name;
         this.isAlive = true;
     }
-
+// TODO Perguntar se é assim que é feito
     public boolean getLifeStatus(){
         return this.isAlive;
     }
@@ -32,7 +32,7 @@ class DeathNoteUser extends  Human{
     @Override
     public String toString() {
         return "Human{" +
-                ", name='" + name + '\'' +
+                " name='" + name + '\'' +
                 ", alive=" + getLifeStatus() +
                 '}';
 
@@ -45,7 +45,7 @@ public class Main {
         // to see how IntelliJ IDEA suggests fixing it.
 
         DeathNoteUser human = new DeathNoteUser("Light", true);
-        // human.die();
+        human.die();
         System.out.println(human.toString());
 
     }
