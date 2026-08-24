@@ -78,10 +78,8 @@ public class Main {
 
         DeathNoteUser light = new DeathNoteUser("Light", true);
         Victim matsuda = new Victim("Mastuda", "Heart Attack");
-//TODO: PORQUÊ ISSO É polimorfimos?
-        light.writeInDeathNote(matsuda);
-        System.out.println(matsuda.name);
-
+        // Aplicacao de polimorfismo 
+        light.writeInDeathNote(light);
     }
-
+    
 }
