@@ -1,5 +1,3 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
 class Human {
     protected String name;
@@ -9,16 +7,42 @@ class Human {
         this.name = name;
         this.isAlive = true;
     }
-    public boolean isLifeStatus(){
+    public boolean isAlive(){
         return this.isAlive;
     }
 
-    public void die() {
+    protected void die() {
+        markAsDead();
+        System.out.println("Go to Heaven");
+    }
+
+    protected void markAsDead() {
         this.isAlive = false;
     }
-}
 
-class DeathNoteUser extends  Human{
+    
+    @Override
+    public String toString() {
+        return "Human{" +
+                " name='" + name + '\'' +
+                ", alive=" + isAlive() +
+                '}';
+
+    }
+
+}
+class Victim extends Human {
+
+    public String deathCause;
+    Victim(String name, String deathCause) {
+        super(name);
+        this.name = name;
+        this.deathCause = deathCause;
+    }
+
+}
+class DeathNoteUser extends Human  {
+
    public  boolean hasShinigamiEyes;
 
    DeathNoteUser (String name,boolean hasShinigamiEyes){
@@ -28,26 +52,36 @@ class DeathNoteUser extends  Human{
 
    }
 
+   public void writeInDeathNote(Human victim) {
+    System.out.println("using death note");
+    victim.die();
+    System.out.println(victim.name + " morreu");
+   }
+
+    @Override
+    public void die() {
+        markAsDead(); 
+        System.out.println("Go to Mu");
+    }
+
     @Override
     public String toString() {
-        return "Human{" +
+        return "Death Note User{" +
                 " name='" + name + '\'' +
-                ", alive=" + isLifeStatus() +
+                ", alive=" + isAlive() +
                 '}';
-
 
     }
 }
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
 
-        DeathNoteUser foo = new DeathNoteUser("Light", true);
-        foo.die();
-        System.out.println(foo.toString());
+        DeathNoteUser light = new DeathNoteUser("Light", true);
+        Victim matsuda = new Victim("Mastuda", "Heart Attack");
+//TODO: PORQUÊ ISSO É polimorfimos?
+        light.writeInDeathNote(matsuda);
+        System.out.println(matsuda.name);
 
     }
 
 }
-
