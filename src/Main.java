@@ -1,4 +1,4 @@
-
+// TODO: Aplicar mais desses 4 pilares e depois partir para interfaces
 class Human {
     protected String name;
     private boolean isAlive;
