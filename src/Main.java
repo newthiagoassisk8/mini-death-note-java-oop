@@ -9,8 +9,7 @@ class Human {
         this.name = name;
         this.isAlive = true;
     }
-// TODO Perguntar se é assim que é feito
-    public boolean getLifeStatus(){
+    public boolean isLifeStatus(){
         return this.isAlive;
     }
 
@@ -33,7 +32,7 @@ class DeathNoteUser extends  Human{
     public String toString() {
         return "Human{" +
                 " name='" + name + '\'' +
-                ", alive=" + getLifeStatus() +
+                ", alive=" + isLifeStatus() +
                 '}';
 
 
@@ -44,9 +43,9 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
 
-        DeathNoteUser human = new DeathNoteUser("Light", true);
-        human.die();
-        System.out.println(human.toString());
+        DeathNoteUser foo = new DeathNoteUser("Light", true);
+        foo.die();
+        System.out.println(foo.toString());
 
     }
 
