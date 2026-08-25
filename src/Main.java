@@ -1,7 +1,10 @@
+//TODO: Nomear pacote com letra minusculo
+// TODO: Conceito de Thread
+// TODO: O que acontece quando mais de uma thread ela tenta alterar o mesmo valor
+// TODO: Relacionamento entre objetos
+// TODO: Aprofundar Interface
 import Model.DeathNoteUser;
 import Model.Victim;
-
-import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
