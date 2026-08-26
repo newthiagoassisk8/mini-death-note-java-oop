@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.concurrent.TimeUnit;
+
 
 public class DeathNoteUser extends Human  {
 
@@ -9,17 +11,25 @@ public class DeathNoteUser extends Human  {
         super(name);
         this.name = name;
         this.hasShinigamiEyes = hasShinigamiEyes;
-
     }
 
     protected void eraseRemainingLife (Human human) {
         human.remainingLifeYears = 0;
         human.remainingLifeMonths = 0;
         human.remainingLifeDays = 0;
-
     }
     public void writeInDeathNote(Human victim) {
         System.out.println("using death note");
+        for (int seconds = 40; seconds >= 0 ; seconds--) {
+            System.err.println(seconds);
+            try {
+               TimeUnit.SECONDS.sleep(1);
+
+            } catch (InterruptedException e) {
+                System.err.println("A contagem foi interropida" + e);
+            }
+            
+        }
         victim.die();
         eraseRemainingLife(victim);
         System.out.println(victim.name + " morreu");
