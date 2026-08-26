@@ -2,7 +2,7 @@ package Model;
 
 import java.util.Random;
 
-class Human {
+public class Human {
     Random random = new Random();
     protected String name;
     private boolean isAlive;
@@ -26,8 +26,6 @@ class Human {
                 + remainingLifeDays + " dias de vida restante";
 
     }
-
-
 
     protected void die() {
         markAsDead();
