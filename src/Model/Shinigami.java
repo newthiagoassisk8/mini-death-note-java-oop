@@ -27,6 +27,7 @@ public class Shinigami extends DeathNoteUser {
                  TimeUnit.SECONDS.sleep(1);
 
              } catch (InterruptedException e) {
+                 //TODO: Estudar no java tem duas categorias de execções
                  System.err.println("A contagem foi interropida" + e);
              }
 
