@@ -5,7 +5,9 @@ import java.util.concurrent.TimeUnit;
 public class Shinigami extends DeathNoteUser {
     private String name;
 
+
     public Shinigami(String name) {
+        super(true);
         this.name = name;
     }
 

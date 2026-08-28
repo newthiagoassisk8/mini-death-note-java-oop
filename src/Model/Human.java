@@ -7,10 +7,12 @@ public class Human extends DeathNoteUser{
     Random random = new Random();
     protected String name;
     private boolean isAlive;
+    boolean hasShinigamiEyes = true;
     protected int remainingLifeYears;
     protected int remainingLifeMonths;
     protected int remainingLifeDays;
-    public Human(String name) {
+    public Human(String name, boolean hasShinigamiEyes) {
+        super(hasShinigamiEyes);
         this.name = name;
         this.isAlive = true;
         this.remainingLifeYears = random.nextInt(81);
