@@ -3,18 +3,18 @@ package Model;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class Human extends DeathNoteUser{
+public class Human implements DeathNoteUser{
     Random random = new Random();
     protected String name;
     private boolean isAlive;
-    boolean hasShinigamiEyes = true;
+    protected boolean hasShinigamiEyes;
     protected int remainingLifeYears;
     protected int remainingLifeMonths;
     protected int remainingLifeDays;
     public Human(String name, boolean hasShinigamiEyes) {
-        super(hasShinigamiEyes);
         this.name = name;
         this.isAlive = true;
+        this.hasShinigamiEyes = hasShinigamiEyes;
         this.remainingLifeYears = random.nextInt(81);
         this.remainingLifeMonths = random.nextInt(12);
         this.remainingLifeDays = random.nextInt(31);
@@ -28,6 +28,9 @@ public class Human extends DeathNoteUser{
                 + remainingLifeMonths + " meses e "
                 + remainingLifeDays + " dias de vida restante";
 
+    }
+    public boolean hasShinigamiEyes() {
+        return hasShinigamiEyes;
     }
 
     protected void die() {
@@ -51,7 +54,17 @@ public class Human extends DeathNoteUser{
 
 
     @Override
-    protected void eraseRemainingLife (Human human) {
+    public void useShinigamiEyes(Human target) {
+        if (!hasShinigamiEyes()) {
+            System.out.println(name + " nao possui olhos de shinigami");
+            return;
+        }
+
+        System.out.println(target.getRemainingLifeSpan());
+    }
+
+    @Override
+    public void eraseRemainingLife (Human human) {
         human.remainingLifeYears = 0;
         human.remainingLifeMonths = 0;
         human.remainingLifeDays = 0;

@@ -2,17 +2,21 @@ package Model;
 
 import java.util.concurrent.TimeUnit;
 
-public class Shinigami extends DeathNoteUser {
+public class Shinigami implements DeathNoteUser {
     private String name;
-
+    private final boolean hasShinigamiEyes = true;
 
     public Shinigami(String name) {
-        super(true);
         this.name = name;
     }
 
-     @Override
-     void eraseRemainingLife(Human target) {
+    @Override
+    public void useShinigamiEyes(Human target) {
+       System.out.println(target.getRemainingLifeSpan());
+    }
+
+    @Override
+     public void eraseRemainingLife(Human target) {
          target.remainingLifeYears = 0;
          target.remainingLifeMonths = 0;
          target.remainingLifeDays = 0;

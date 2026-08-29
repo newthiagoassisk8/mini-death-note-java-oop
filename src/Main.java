@@ -11,9 +11,11 @@ public class Main {
 
         Shinigami ryuk = new Shinigami("ryuk");
 
+        Human misa = new Human("light", true);
         Human light = new Human("light", false);
         Human matsuda = new Human("Mastuda", false);
         ryuk.writeInDeathNote(matsuda);
+        light.useShinigamiEyes(matsuda);
     }
     
 }
