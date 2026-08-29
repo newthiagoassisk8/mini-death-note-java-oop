@@ -5,7 +5,7 @@
 // TODO: Aprofundar Interface
 import Model.Human;
 import Model.Shinigami;
-// TODO: aplicar composicao
+// TODO: aplicar composicao (Criar nova classe ShinigamiEyes e DeathNote)
 public class Main {
     public static void main(String[] args) {
 
