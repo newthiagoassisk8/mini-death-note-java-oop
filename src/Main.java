@@ -6,10 +6,12 @@
 import Model.DeathNote;
 import Model.Human;
 import Model.Shinigami;
+
+import java.util.Optional;
+
 // TODO: aplicar composicao (Criar nova classe ShinigamiEyes e DeathNote)
 public class Main {
     public static void main(String[] args) {
-
         DeathNote deathNoteRyuk = new DeathNote();
         DeathNote deathNoteLight = new DeathNote();
         DeathNote deathNoteMisa = new DeathNote();
