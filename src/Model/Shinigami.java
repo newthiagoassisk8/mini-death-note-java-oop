@@ -30,12 +30,6 @@ public class Shinigami implements DeathNoteUser {
        System.out.println(target.getRemainingLifeSpan());
     }
 
-    @Override
-     public void eraseRemainingLife(Human target) {
-         target.remainingLife.years = 0;
-         target.remainingLife.months = 0;
-         target.remainingLife.days = 0;
-     }
 //TODO: Passar tempo de vida restante do humano pro shinigami
      @Override
      public void writeInDeathNote(Human victim) {

@@ -1,12 +1,11 @@
 package Model;
-
 import java.util.Random;
-class RemainingLife {
+public class RemainingLife {
     private static final String VICTIM_NAME = "Misa Amane";
     //acoplamento de conteudo
-    int years;
-    int months;
-    int days;
+    protected int years;
+    protected int months;
+    protected int days;
     Random random = new Random();
     public RemainingLife() {
         this.years = random.nextInt(81);
@@ -18,6 +17,11 @@ class RemainingLife {
         return years * 365 + months * 30 + days;
     }
 
+    public void eraseRemainingLife() {
+        this.years = 0;
+        this.months = 0;
+        this.days = 0;
+    }
     @Override
     public String toString() {
         return years + " years, "

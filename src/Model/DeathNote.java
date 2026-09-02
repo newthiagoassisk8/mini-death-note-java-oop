@@ -2,7 +2,7 @@ package Model;
 
 import java.util.concurrent.TimeUnit;
 
-public class DeathNote {
+public class DeathNote{
    /*
    * of
    * valueOf
@@ -26,7 +26,7 @@ public class DeathNote {
 
       }
       human.die();
-      human.eraseRemainingLife(human);
+       human.remainingLife.eraseRemainingLife();
       System.out.println(human.name + " morreu");
    }
 

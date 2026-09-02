@@ -1,16 +1,12 @@
 package Model;
-
-import java.security.SecureRandom;
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Human implements DeathNoteUser, ShinigamiEyes{
-    Random random = new Random();
     protected String name;
     protected DeathNote deathNote;
     private boolean isAlive;
     protected boolean hasShinigamiEyes;
-    protected RemainingLife remainingLife;
+    public RemainingLife remainingLife;
     public Human(String name, boolean hasShinigamiEyes, DeathNote deathNote) {
         this.name = name;
         this.isAlive = true;
@@ -23,6 +19,7 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
         this.name = name;
         this.isAlive = true;
         this.hasShinigamiEyes = hasShinigamiEyes;
+        this.remainingLife = new RemainingLife();
     }
     public boolean isAlive(){
         return this.isAlive;
@@ -50,6 +47,10 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
         this.isAlive = false;
     }
 
+    // public void eraeseLife() {
+     //  remainingLife.eraseRemainingLife();
+    //}
+
 
     @Override
     public String toString() {
@@ -72,12 +73,6 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
         System.out.println(target.getRemainingLifeSpan());
     }
 
-    @Override
-    public void eraseRemainingLife (Human human) {
-        human.remainingLife.years = 0;
-        human.remainingLife.months = 0;
-        human.remainingLife.days = 0;
-    }
     @Override
     public void writeInDeathNote(Human victim) {
         if (deathNote == null) {

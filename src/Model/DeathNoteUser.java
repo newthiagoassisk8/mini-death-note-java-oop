@@ -9,7 +9,6 @@ public interface  DeathNoteUser  {
 
      void useShinigamiEyes(Human target);
 
-      void eraseRemainingLife(Human target);
 
       void writeInDeathNote(Human victim);
 

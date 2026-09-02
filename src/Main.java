@@ -15,6 +15,7 @@ public class Main {
 
 
 
+
         Shinigami ryuk = new Shinigami("ryuk", deathNoteRyuk);
         Human misa = new Human("misa", true, deathNoteMisa);
         // dynamic binding
@@ -22,8 +23,9 @@ public class Main {
         // static binding
         Human light2 = new Human("light", false, deathNoteLight);
         Human matsuda = new Human("Mastuda", false);
-        light.getRemainingLifeSpan();
-        ryuk.getRemainingLife();
+        System.out.print(matsuda.getRemainingLifeSpan());
+        ryuk.writeInDeathNote(matsuda);
+        System.out.print(matsuda.getRemainingLifeSpan());
         // light.seeLifeSpan(misa);
 
     }
