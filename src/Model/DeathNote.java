@@ -26,6 +26,7 @@ public class DeathNote {
 
       }
       human.die();
+      human.eraseRemainingLife(human);
       System.out.println(human.name + " morreu");
    }
 

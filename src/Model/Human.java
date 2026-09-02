@@ -1,20 +1,22 @@
 package Model;
 
+import java.security.SecureRandom;
 import java.util.Random;
-public class Human implements DeathNoteUser{
+import java.util.concurrent.ThreadLocalRandom;
+
+public class Human implements DeathNoteUser, ShinigamiEyes{
     Random random = new Random();
     protected String name;
     protected DeathNote deathNote;
     private boolean isAlive;
     protected boolean hasShinigamiEyes;
-    protected int remainingLifeYears = random.nextInt(81);
-    protected int remainingLifeMonths = random.nextInt(12);
-    protected int remainingLifeDays = random.nextInt(31);
+    protected RemainingLife remainingLife;
     public Human(String name, boolean hasShinigamiEyes, DeathNote deathNote) {
         this.name = name;
         this.isAlive = true;
         this.hasShinigamiEyes = hasShinigamiEyes;
         this.deathNote = deathNote;
+        this.remainingLife = new RemainingLife();
     }
 
     public Human(String name, boolean hasShinigamiEyes) {
@@ -25,11 +27,15 @@ public class Human implements DeathNoteUser{
     public boolean isAlive(){
         return this.isAlive;
     }
+    public String getName() {
+        return this.name;
+    }
+
 
     public String getRemainingLifeSpan() {
-        return remainingLifeYears + " anos "
-                + remainingLifeMonths + " meses e "
-                + remainingLifeDays + " dias de vida restante";
+        return this.remainingLife.years + " anos "
+                + this.remainingLife.months + " meses e "
+                + this.remainingLife.days + " dias de vida restante";
 
     }
     public boolean hasShinigamiEyes() {
@@ -68,9 +74,9 @@ public class Human implements DeathNoteUser{
 
     @Override
     public void eraseRemainingLife (Human human) {
-        human.remainingLifeYears = 0;
-        human.remainingLifeMonths = 0;
-        human.remainingLifeDays = 0;
+        human.remainingLife.years = 0;
+        human.remainingLife.months = 0;
+        human.remainingLife.days = 0;
     }
     @Override
     public void writeInDeathNote(Human victim) {
@@ -79,5 +85,21 @@ public class Human implements DeathNoteUser{
             return;
         }
         deathNote.write(victim);
+    }
+
+    @Override
+    public String seeRealName(Human target) {
+        return target.name;
+    }
+
+    @Override
+    public String seeRealName(Shinigami target) {
+        return "";
+    }
+
+    @Override
+    public void seeLifeSpan(Human target) {
+        System.out.println(target.getRemainingLifeSpan());
+
     }
 }
