@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 // TODO: FAZER shinigami poder se apaixonar
 // Ideal ter o minimo de acoplamento possivel
@@ -33,6 +34,7 @@ public class Shinigami implements DeathNoteUser {
 //TODO: Passar tempo de vida restante do humano pro shinigami
      @Override
      public void writeInDeathNote(Human victim) {
+         Objects.requireNonNull(victim, "Victim must not be null");
          deathNote.write(victim);
          victim.die();
 

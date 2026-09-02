@@ -1,4 +1,5 @@
 package Model;
+import java.util.List;
 import java.util.Random;
 
 public class Human implements DeathNoteUser, ShinigamiEyes{
@@ -27,7 +28,14 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
     public String getName() {
         return this.name;
     }
+//
+    public List<String> getNames() {
+        if (new Random().nextBoolean()) {
+            return List.of("Misa Amane");
+        }
 
+        return List.of();
+    }
 
     public String getRemainingLifeSpan() {
         return this.remainingLife.years + " anos "

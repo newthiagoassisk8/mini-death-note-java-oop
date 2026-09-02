@@ -24,9 +24,11 @@ public class Main {
         Human light2 = new Human("light", false, deathNoteLight);
         Human matsuda = new Human("Mastuda", false);
         System.out.print(matsuda.getRemainingLifeSpan());
-        ryuk.writeInDeathNote(matsuda);
+        ryuk.writeInDeathNote(null);
         System.out.print(matsuda.getRemainingLifeSpan());
         // light.seeLifeSpan(misa);
+
+        matsuda.getNames().forEach(System.out::println);
 
     }
     
