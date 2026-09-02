@@ -1,23 +1,26 @@
 package Model;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
 public class Human implements DeathNoteUser{
     Random random = new Random();
     protected String name;
+    protected DeathNote deathNote;
     private boolean isAlive;
     protected boolean hasShinigamiEyes;
-    protected int remainingLifeYears;
-    protected int remainingLifeMonths;
-    protected int remainingLifeDays;
+    protected int remainingLifeYears = random.nextInt(81);
+    protected int remainingLifeMonths = random.nextInt(12);
+    protected int remainingLifeDays = random.nextInt(31);
+    public Human(String name, boolean hasShinigamiEyes, DeathNote deathNote) {
+        this.name = name;
+        this.isAlive = true;
+        this.hasShinigamiEyes = hasShinigamiEyes;
+        this.deathNote = deathNote;
+    }
+
     public Human(String name, boolean hasShinigamiEyes) {
         this.name = name;
         this.isAlive = true;
         this.hasShinigamiEyes = hasShinigamiEyes;
-        this.remainingLifeYears = random.nextInt(81);
-        this.remainingLifeMonths = random.nextInt(12);
-        this.remainingLifeDays = random.nextInt(31);
     }
     public boolean isAlive(){
         return this.isAlive;
@@ -71,20 +74,10 @@ public class Human implements DeathNoteUser{
     }
     @Override
     public void writeInDeathNote(Human victim) {
-        System.out.println("using death note");
-        for (int seconds = 5; seconds >= 0 ; seconds--) {
-            System.err.println(seconds);
-            try {
-                TimeUnit.SECONDS.sleep(1);
-
-            } catch (InterruptedException e) {
-                System.err.println("A contagem foi interropida" + e);
-            }
-
+        if (deathNote == null) {
+            System.out.println(name + "não possui death note");
+            return;
         }
-        victim.die();
-        eraseRemainingLife(victim);
-        System.out.println(victim.name + " morreu");
+        deathNote.write(victim);
     }
-
 }
