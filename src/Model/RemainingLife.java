@@ -3,9 +3,9 @@ import java.util.Random;
 public class RemainingLife {
     private static final String VICTIM_NAME = "Misa Amane";
     //acoplamento de conteudo
-    protected int years;
-    protected int months;
-    protected int days;
+    private int years;
+    private int months;
+    private int days;
     Random random = new Random();
     public RemainingLife() {
         this.years = random.nextInt(81);
@@ -21,6 +21,13 @@ public class RemainingLife {
         this.years = 0;
         this.months = 0;
         this.days = 0;
+    }
+
+    public String getRemainingLifeSpan() {
+        return this.years + " anos "
+                + this.months + " meses e "
+                + this.days + " dias de vida restante";
+
     }
     @Override
     public String toString() {

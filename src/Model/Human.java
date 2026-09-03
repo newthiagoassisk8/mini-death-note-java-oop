@@ -28,7 +28,6 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
     public String getName() {
         return this.name;
     }
-//
     public List<String> getNames() {
         if (new Random().nextBoolean()) {
             return List.of("Misa Amane");
@@ -37,12 +36,6 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
         return List.of();
     }
 
-    public String getRemainingLifeSpan() {
-        return this.remainingLife.years + " anos "
-                + this.remainingLife.months + " meses e "
-                + this.remainingLife.days + " dias de vida restante";
-
-    }
     public boolean hasShinigamiEyes() {
         return hasShinigamiEyes;
     }
@@ -65,8 +58,12 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
         return "Human{" +
                 " name='" + name + '\'' +
                 ", alive=" + isAlive() +
-                ",remainingLife=" + getRemainingLifeSpan() +
+                ",remainingLife=" + seeHumanLifeSpan() +
                 '}';
+
+    }
+    public String seeHumanLifeSpan(){
+       return remainingLife.getRemainingLifeSpan();
 
     }
 
@@ -78,7 +75,8 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
             return;
         }
 
-        System.out.println(target.getRemainingLifeSpan());
+
+        seeHumanLifeSpan();
     }
 
     @Override
@@ -102,7 +100,7 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
 
     @Override
     public void seeLifeSpan(Human target) {
-        System.out.println(target.getRemainingLifeSpan());
+        System.out.println(seeHumanLifeSpan());
 
     }
 }

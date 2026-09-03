@@ -23,12 +23,12 @@ public class Main {
         // static binding
         Human light2 = new Human("light", false, deathNoteLight);
         Human matsuda = new Human("Mastuda", false);
-        System.out.print(matsuda.getRemainingLifeSpan());
-        ryuk.writeInDeathNote(null);
-        System.out.print(matsuda.getRemainingLifeSpan());
+        System.out.print(matsuda.seeHumanLifeSpan());
+        light.writeInDeathNote(matsuda);
+
+        System.out.print(matsuda.seeHumanLifeSpan());
         // light.seeLifeSpan(misa);
 
-        matsuda.getNames().forEach(System.out::println);
 
     }
     

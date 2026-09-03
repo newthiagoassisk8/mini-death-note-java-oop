@@ -28,7 +28,7 @@ public class Shinigami implements DeathNoteUser {
 
     @Override
     public void useShinigamiEyes(Human target) {
-       System.out.println(target.getRemainingLifeSpan());
+       System.out.println(target.seeHumanLifeSpan());
     }
 
 //TODO: Passar tempo de vida restante do humano pro shinigami
