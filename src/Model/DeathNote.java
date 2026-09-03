@@ -1,16 +1,19 @@
 package Model;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class DeathNote{
+
+public class DeathNote {
    /*
    * of
    * valueOf
    * from
    * getInstance
    * */
-   public static DeathNote open() {
-      return new DeathNote();
+
+
+   public DeathNote() {
    }
 
    public void write (Human human) {
@@ -25,7 +28,7 @@ public class DeathNote{
          }
 
       }
-      human.die();
+       human.die();
        human.remainingLife.eraseRemainingLife();
       System.out.println(human.name + " morreu");
    }

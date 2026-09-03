@@ -6,10 +6,8 @@ import java.util.concurrent.TimeUnit;
 // Ideal ter o minimo de acoplamento possivel
 public class Shinigami implements DeathNoteUser, ShinigamiEyes {
     private String name;
-    private final boolean hasShinigamiEyes = true;
     private DeathNote deathNote;
     protected RemainingLife remainingLife;
-
 
 
     public Shinigami(String name, DeathNote deathNote) {
@@ -51,13 +49,6 @@ public class Shinigami implements DeathNoteUser, ShinigamiEyes {
 
     @Override
     public String seeLifeSpan(Human target) {
-        if (!this.hasShinigamiEyes) {
-            throw new IllegalStateException(
-                    target.name + " não possui os olhos de shinigami"
-            );
-        }
-
-
         return  target.remainingLife.getRemainingLifeSpan();
 
     }

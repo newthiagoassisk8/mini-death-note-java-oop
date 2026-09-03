@@ -18,12 +18,12 @@ public class Main {
         Shinigami ryuk = new Shinigami("ryuk", deathNoteRyuk);
         Human misa = new Human("misa", true, deathNoteMisa);
         // dynamic binding
-        DeathNoteUser light = new Human("light", false, deathNoteLight);
+        Human light = new Human("light", false, deathNoteLight);
         // static binding
         Human light2 = new Human("light", false, deathNoteLight);
         Human matsuda = new Human("Mastuda", false);
         System.out.print(misa.seeLifeSpan(matsuda));
-        light.writeInDeathNote(matsuda);
+        ryuk.writeInDeathNote(light);
 
         System.out.print(misa.seeRealName(matsuda));
 
