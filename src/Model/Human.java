@@ -1,44 +1,55 @@
 package Model;
-
+import java.util.List;
 import java.util.Random;
-public class Human implements DeathNoteUser{
-    Random random = new Random();
+
+public class Human implements DeathNoteUser, ShinigamiEyes{
     protected String name;
     protected DeathNote deathNote;
     private boolean isAlive;
     protected boolean hasShinigamiEyes;
-    protected int remainingLifeYears = random.nextInt(81);
-    protected int remainingLifeMonths = random.nextInt(12);
-    protected int remainingLifeDays = random.nextInt(31);
+    public RemainingLife remainingLife;
     public Human(String name, boolean hasShinigamiEyes, DeathNote deathNote) {
         this.name = name;
         this.isAlive = true;
         this.hasShinigamiEyes = hasShinigamiEyes;
         this.deathNote = deathNote;
+        this.remainingLife = new RemainingLife();
     }
 
     public Human(String name, boolean hasShinigamiEyes) {
         this.name = name;
         this.isAlive = true;
         this.hasShinigamiEyes = hasShinigamiEyes;
+        this.remainingLife = new RemainingLife();
     }
     public boolean isAlive(){
         return this.isAlive;
     }
 
-    public String getRemainingLifeSpan() {
-        return remainingLifeYears + " anos "
-                + remainingLifeMonths + " meses e "
-                + remainingLifeDays + " dias de vida restante";
+    public String getName() {
+        return this.name;
 
     }
+    public List<String> getNames() {
+        if (new Random().nextBoolean()) {
+            return List.of("Misa Amane");
+        }
+
+        return List.of();
+    }
+
     public boolean hasShinigamiEyes() {
         return hasShinigamiEyes;
     }
 
     protected void die() {
         markAsDead();
-        System.out.println("Go to Heaven");
+        if (deathNote != null) {
+
+            System.out.println("Go to Heaven");
+        } else {
+
+        }
     }
     protected void markAsDead() {
         this.isAlive = false;
@@ -46,38 +57,36 @@ public class Human implements DeathNoteUser{
 
 
     @Override
-    public String toString() {
-        return "Human{" +
-                " name='" + name + '\'' +
-                ", alive=" + isAlive() +
-                ",remainingLife=" + getRemainingLifeSpan() +
-                '}';
-
-    }
-
-
-    @Override
-    public void useShinigamiEyes(Human target) {
-        if (!hasShinigamiEyes()) {
-            System.out.println(name + " nao possui olhos de shinigami");
-            return;
-        }
-
-        System.out.println(target.getRemainingLifeSpan());
-    }
-
-    @Override
-    public void eraseRemainingLife (Human human) {
-        human.remainingLifeYears = 0;
-        human.remainingLifeMonths = 0;
-        human.remainingLifeDays = 0;
-    }
-    @Override
     public void writeInDeathNote(Human victim) {
         if (deathNote == null) {
             System.out.println(name + "não possui death note");
             return;
         }
         deathNote.write(victim);
+    }
+
+    @Override
+    public String seeRealName(Human target) {
+        if (this.deathNote == null) {
+            throw new IllegalStateException(
+                    this.name + " não possui um Death Note"
+            );
+        }
+        return target.getName();
+    }
+
+
+
+    @Override
+    public String seeLifeSpan(Human target) {
+        if (!this.hasShinigamiEyes()) {
+            throw new IllegalStateException(
+                    this.name + " não possui os olhos de shinigami"
+            );
+        }
+
+
+        return  target.remainingLife.getRemainingLifeSpan();
+
     }
 }

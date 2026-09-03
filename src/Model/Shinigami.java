@@ -1,34 +1,55 @@
 package Model;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
-
-public class Shinigami implements DeathNoteUser {
+// TODO: FAZER shinigami poder se apaixonar
+// Ideal ter o minimo de acoplamento possivel
+public class Shinigami implements DeathNoteUser, ShinigamiEyes {
     private String name;
-    private final boolean hasShinigamiEyes = true;
     private DeathNote deathNote;
+    protected RemainingLife remainingLife;
+
 
     public Shinigami(String name, DeathNote deathNote) {
         this.name = name;
         this.deathNote = deathNote;
+        this.remainingLife = new RemainingLife();
     }
 
-    @Override
-    public void useShinigamiEyes(Human target) {
-       System.out.println(target.getRemainingLifeSpan());
+    public void getRemainingLife() {
+        System.out.println(remainingLife.getTotalDays() + " de dias restantes");
     }
 
-    @Override
-     public void eraseRemainingLife(Human target) {
-         target.remainingLifeYears = 0;
-         target.remainingLifeMonths = 0;
-         target.remainingLifeDays = 0;
-     }
+    public String getName() {
+        return name;
+    }
+
+
 //TODO: Passar tempo de vida restante do humano pro shinigami
      @Override
      public void writeInDeathNote(Human victim) {
+         Objects.requireNonNull(victim, "Victim must not be null");
          deathNote.write(victim);
-         victim.die();
 
      }
+
+
+    @Override
+    public String seeRealName(Human target) {
+        if (this.deathNote == null) {
+            throw new IllegalStateException(
+                    target.getName() + " não possui um Death Note"
+            );
+        }
+        return target.getName();
+    }
+
+
+
+    @Override
+    public String seeLifeSpan(Human target) {
+        return  target.remainingLife.getRemainingLifeSpan();
+
+    }
 
 }
