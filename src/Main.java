@@ -11,7 +11,6 @@ public class Main {
         DeathNote deathNoteRyuk = new DeathNote();
         DeathNote deathNoteLight = new DeathNote();
         DeathNote deathNoteMisa = new DeathNote();
-        DeathNote.open();
 
 
 
@@ -19,15 +18,14 @@ public class Main {
         Shinigami ryuk = new Shinigami("ryuk", deathNoteRyuk);
         Human misa = new Human("misa", true, deathNoteMisa);
         // dynamic binding
-        Human light = new Human("light", false, deathNoteLight);
+        DeathNoteUser light = new Human("light", false, deathNoteLight);
         // static binding
         Human light2 = new Human("light", false, deathNoteLight);
         Human matsuda = new Human("Mastuda", false);
-        System.out.print(matsuda.seeHumanLifeSpan());
+        System.out.print(misa.seeLifeSpan(matsuda));
         light.writeInDeathNote(matsuda);
 
-        System.out.print(matsuda.seeHumanLifeSpan());
-        // light.seeLifeSpan(misa);
+        System.out.print(misa.seeRealName(matsuda));
 
 
     }

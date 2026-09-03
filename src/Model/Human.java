@@ -25,8 +25,10 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
     public boolean isAlive(){
         return this.isAlive;
     }
+
     public String getName() {
         return this.name;
+
     }
     public List<String> getNames() {
         if (new Random().nextBoolean()) {
@@ -48,36 +50,7 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
         this.isAlive = false;
     }
 
-    // public void eraeseLife() {
-     //  remainingLife.eraseRemainingLife();
-    //}
 
-
-    @Override
-    public String toString() {
-        return "Human{" +
-                " name='" + name + '\'' +
-                ", alive=" + isAlive() +
-                ",remainingLife=" + seeHumanLifeSpan() +
-                '}';
-
-    }
-    public String seeHumanLifeSpan(){
-       return remainingLife.getRemainingLifeSpan();
-
-    }
-
-
-    @Override
-    public void useShinigamiEyes(Human target) {
-        if (!hasShinigamiEyes()) {
-            System.out.println(name + " nao possui olhos de shinigami");
-            return;
-        }
-
-
-        seeHumanLifeSpan();
-    }
 
     @Override
     public void writeInDeathNote(Human victim) {
@@ -90,17 +63,26 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
 
     @Override
     public String seeRealName(Human target) {
-        return target.name;
+        if (this.deathNote == null) {
+            throw new IllegalStateException(
+                    this.name + " não possui um Death Note"
+            );
+        }
+        return target.getName();
     }
 
-    @Override
-    public String seeRealName(Shinigami target) {
-        return "";
-    }
+
 
     @Override
-    public void seeLifeSpan(Human target) {
-        System.out.println(seeHumanLifeSpan());
+    public String seeLifeSpan(Human target) {
+        if (!this.hasShinigamiEyes()) {
+            throw new IllegalStateException(
+                    this.name + " não possui os olhos de shinigami"
+            );
+        }
+
+
+        return  target.remainingLife.getRemainingLifeSpan();
 
     }
 }

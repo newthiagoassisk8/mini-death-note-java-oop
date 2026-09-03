@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 // TODO: FAZER shinigami poder se apaixonar
 // Ideal ter o minimo de acoplamento possivel
-public class Shinigami implements DeathNoteUser {
+public class Shinigami implements DeathNoteUser, ShinigamiEyes {
     private String name;
     private final boolean hasShinigamiEyes = true;
     private DeathNote deathNote;
@@ -26,10 +26,6 @@ public class Shinigami implements DeathNoteUser {
         return name;
     }
 
-    @Override
-    public void useShinigamiEyes(Human target) {
-       System.out.println(target.seeHumanLifeSpan());
-    }
 
 //TODO: Passar tempo de vida restante do humano pro shinigami
      @Override
@@ -39,5 +35,31 @@ public class Shinigami implements DeathNoteUser {
          victim.die();
 
      }
+
+
+    @Override
+    public String seeRealName(Human target) {
+        if (this.deathNote == null) {
+            throw new IllegalStateException(
+                    target.getName() + " não possui um Death Note"
+            );
+        }
+        return target.getName();
+    }
+
+
+
+    @Override
+    public String seeLifeSpan(Human target) {
+        if (!this.hasShinigamiEyes) {
+            throw new IllegalStateException(
+                    target.name + " não possui os olhos de shinigami"
+            );
+        }
+
+
+        return  target.remainingLife.getRemainingLifeSpan();
+
+    }
 
 }
