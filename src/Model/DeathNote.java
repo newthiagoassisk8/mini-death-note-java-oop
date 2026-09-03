@@ -17,7 +17,6 @@ public class DeathNote {
    }
 
    public void write (Human human) {
-      System.out.println("using death note");
       for (int seconds = 5; seconds >= 0 ; seconds--) {
          System.err.println(seconds);
          try {
@@ -28,9 +27,9 @@ public class DeathNote {
          }
 
       }
+      System.out.println(human.name + " morreu");
        human.die();
        human.remainingLife.eraseRemainingLife();
-      System.out.println(human.name + " morreu");
    }
 
 }

@@ -30,7 +30,6 @@ public class Shinigami implements DeathNoteUser, ShinigamiEyes {
      public void writeInDeathNote(Human victim) {
          Objects.requireNonNull(victim, "Victim must not be null");
          deathNote.write(victim);
-         victim.die();
 
      }
 
