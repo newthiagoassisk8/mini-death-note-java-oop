@@ -22,6 +22,10 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
         this.hasShinigamiEyes = hasShinigamiEyes;
         this.remainingLife = new RemainingLife();
     }
+    public static Human create(){
+        return new Human("Humano generico", false);
+    }
+
     public boolean isAlive(){
         return this.isAlive;
     }

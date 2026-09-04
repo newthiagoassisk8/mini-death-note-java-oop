@@ -16,15 +16,17 @@ public class Main {
 
 
         Shinigami ryuk = new Shinigami("ryuk", deathNoteRyuk);
+        Shinigami rem = new Shinigami("ryuk", deathNoteRyuk);
         Human misa = new Human("misa", true, deathNoteMisa);
         // dynamic binding
         Human light = new Human("light", false, deathNoteLight);
         // static binding
         Human light2 = new Human("light", false, deathNoteLight);
         Human matsuda = new Human("Mastuda", false);
-        System.out.print(misa.seeLifeSpan(matsuda));
-        ryuk.writeInDeathNote(matsuda);
-
+        System.out.println(rem.remainingLife.getRemainingLifeSpan());
+        System.out.println(misa.remainingLife.getRemainingLifeSpan());
+        rem.fallInLove(misa);
+        System.out.println(misa.remainingLife.getRemainingLifeSpan());
 
 
     }

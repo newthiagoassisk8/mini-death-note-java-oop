@@ -1,5 +1,8 @@
 package Model;
+
+import java.util.Objects;
 import java.util.Random;
+
 public class RemainingLife {
     private static final String VICTIM_NAME = "Misa Amane";
     //acoplamento de conteudo
@@ -21,6 +24,26 @@ public class RemainingLife {
         this.years = 0;
         this.months = 0;
         this.days = 0;
+    }
+//TODO: Tipar o parametro como deathNoteUser
+    public static void transferRemainingLife(Human human, Shinigami shinigami) {
+        Objects.requireNonNull(human, "Human must not be null");
+        Objects.requireNonNull(shinigami, "Shinigami must not be null");
+
+        int totalDays = Math.addExact(
+                human.remainingLife.getTotalDays(),
+                shinigami.remainingLife.getTotalDays()
+        );
+
+        human.remainingLife.setTotalDays(totalDays);
+        shinigami.remainingLife.eraseRemainingLife();
+    }
+
+    private void setTotalDays(int totalDays) {
+        this.years = totalDays / 365;
+        int remainingDays = totalDays % 365;
+        this.months = remainingDays / 30;
+        this.days = remainingDays % 30;
     }
 
     public String getRemainingLifeSpan() {

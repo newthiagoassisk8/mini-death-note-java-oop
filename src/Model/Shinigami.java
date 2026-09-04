@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Shinigami implements DeathNoteUser, ShinigamiEyes {
     private String name;
     private DeathNote deathNote;
-    protected RemainingLife remainingLife;
+    public RemainingLife remainingLife;
 
 
     public Shinigami(String name, DeathNote deathNote) {
@@ -15,16 +15,19 @@ public class Shinigami implements DeathNoteUser, ShinigamiEyes {
         this.remainingLife = new RemainingLife();
     }
 
-    public void getRemainingLife() {
-        System.out.println(remainingLife.getTotalDays() + " de dias restantes");
+    public String getRemainingLife() {
+        return remainingLife.getTotalDays() + " de dias restantes";
     }
 
     public String getName() {
         return name;
     }
 
+    public String fallInLove(Human target) {
+        RemainingLife.transferRemainingLife(target, this);
+        return this.name + " transferiu seu tempo de vida restante para " + target.getName();
+    }
 
-//TODO: Passar tempo de vida restante do humano pro shinigami
      @Override
      public void writeInDeathNote(Human victim) {
          Objects.requireNonNull(victim, "Victim must not be null");
@@ -34,6 +37,7 @@ public class Shinigami implements DeathNoteUser, ShinigamiEyes {
 
      @Override
      public String toString(){
+        Human foo =  Human.create();
         return "Shinigami{" +
                 "name='" + this.name + '\'' +
                 ", deathNote=" + this.deathNote +
