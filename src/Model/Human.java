@@ -48,7 +48,7 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
 
             System.out.println("Go to Heaven");
         } else {
-
+            System.out.println("Go to Mu");
         }
     }
     protected void markAsDead() {

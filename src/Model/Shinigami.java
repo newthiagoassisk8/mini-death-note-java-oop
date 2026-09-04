@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 // TODO: FAZER shinigami poder se apaixonar
 // Ideal ter o minimo de acoplamento possivel
 public class Shinigami implements DeathNoteUser, ShinigamiEyes {
@@ -31,6 +30,15 @@ public class Shinigami implements DeathNoteUser, ShinigamiEyes {
          Objects.requireNonNull(victim, "Victim must not be null");
          deathNote.write(victim);
 
+     }
+
+     @Override
+     public String toString(){
+        return "Shinigami{" +
+                "name='" + this.name + '\'' +
+                ", deathNote=" + this.deathNote +
+                ", remainingLife=" + this.remainingLife +
+                '}';
      }
 
 

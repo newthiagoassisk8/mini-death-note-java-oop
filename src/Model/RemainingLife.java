@@ -31,8 +31,8 @@ public class RemainingLife {
     }
     @Override
     public String toString() {
-        return years + " years, "
-                + months + " months, "
-                + days + " days";
+        return this.years + " years, "
+                + this.months + " months, "
+                + this.days + " days";
     }
 }
