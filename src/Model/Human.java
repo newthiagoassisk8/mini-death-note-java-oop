@@ -34,6 +34,12 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
         return this.name;
 
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
     public List<String> getNames() {
         if (new Random().nextBoolean()) {
             return List.of("Misa Amane");
@@ -48,11 +54,11 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
 
     protected void die() {
         markAsDead();
-        if (deathNote != null) {
+        if (this.deathNote != null) {
 
-            System.out.println("Go to Heaven");
-        } else {
             System.out.println("Go to Mu");
+        } else {
+            System.out.println("Go to Heaven");
         }
     }
     protected void markAsDead() {

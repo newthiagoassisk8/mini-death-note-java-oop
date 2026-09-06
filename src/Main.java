@@ -2,7 +2,6 @@
 // TODO: Relacionamento entre objetos
 // TODO: Aprofundar Interface
 import Model.*;
-
 import java.net.MalformedURLException;
 
 // TODO: Uma outra coisa legal que você podia fazer depois, é um Shinigami capaz de se apaixonar, dando o restante de sua vida para o Human alvo e o DeathNote com um conjunto de Rule.jjk
@@ -11,22 +10,20 @@ public class Main {
         DeathNote deathNoteRyuk = new DeathNote();
         DeathNote deathNoteLight = new DeathNote();
         DeathNote deathNoteMisa = new DeathNote();
-
-
-
-
-        Shinigami ryuk = new Shinigami("ryuk", deathNoteRyuk);
+        deathNoteMisa.getVictims();
         Shinigami rem = new Shinigami("ryuk", deathNoteRyuk);
         Human misa = new Human("misa", true, deathNoteMisa);
         // dynamic binding
         Human light = new Human("light", false, deathNoteLight);
         // static binding
-        Human light2 = new Human("light", false, deathNoteLight);
+        Human light2 = new Human("light impostor", false, deathNoteLight);
         Human matsuda = new Human("Mastuda", false);
-        System.out.println(rem.remainingLife.getRemainingLifeSpan());
-        System.out.println(misa.remainingLife.getRemainingLifeSpan());
-        rem.fallInLove(misa);
-        System.out.println(misa.remainingLife.getRemainingLifeSpan());
+
+        light.writeInDeathNote(matsuda);
+
+        light.writeInDeathNote(misa);
+        light.writeInDeathNote(light2);
+        System.out.println(deathNoteLight.getVictims());
 
 
     }
