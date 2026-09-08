@@ -1,6 +1,5 @@
-package Model;
+package model;
 
-import java.util.Objects;
 import java.util.Random;
 
 public class RemainingLife {

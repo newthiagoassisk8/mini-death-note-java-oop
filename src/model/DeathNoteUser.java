@@ -1,6 +1,4 @@
-package Model;
-
-import java.util.concurrent.TimeUnit;
+package model;
 
 
 public interface  DeathNoteUser  {

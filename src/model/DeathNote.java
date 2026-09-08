@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +22,7 @@ public class DeathNote {
       for (int seconds = 5; seconds >= 0 ; seconds--) {
          System.err.println(seconds);
          try {
+
             TimeUnit.SECONDS.sleep(1);
 
          } catch (InterruptedException e) {
@@ -31,6 +32,7 @@ public class DeathNote {
       }
       System.out.println(human.name + " morreu");
        human.die();
+
       addVictim(human);
        human.remainingLife.eraseRemainingLife();
    }
