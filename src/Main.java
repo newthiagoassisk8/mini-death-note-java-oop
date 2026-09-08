@@ -22,7 +22,7 @@ public class Main {
         light.writeInDeathNote(matsuda);
 
         light.writeInDeathNote(misa);
-        light.writeInDeathNote(light2);
+        light.writeInDeathNote(misa);
         System.out.println(deathNoteLight.getVictims());
 
 

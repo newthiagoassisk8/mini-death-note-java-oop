@@ -68,6 +68,11 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
 
     @Override
     public void writeInDeathNote(Human victim) {
+
+        if (!victim.isAlive()){
+            System.out.println("a vitima " + victim.name + " já está morto");
+            return;
+        }
         if (!isAlive()){
             System.out.println(name + " não está vivo");
             return;
