@@ -24,10 +24,22 @@ public class Shinigami implements DeathNoteUser, ShinigamiEyes {
     }
 
     public String fallInLove(Human target) {
-        RemainingLife.transferRemainingLife(target, this);
+        this.transferRemainingLife(target, this);
         return this.name + " transferiu seu tempo de vida restante para " + target.getName();
     }
 
+    public static void transferRemainingLife(Human human, Shinigami shinigami) {
+        Objects.requireNonNull(human, "Human must not be null");
+        Objects.requireNonNull(shinigami, "Shinigami must not be null");
+
+        int totalDays = Math.addExact(
+                human.remainingLife.getTotalDays(),
+                shinigami.remainingLife.getTotalDays()
+        );
+
+        human.remainingLife.setTotalDays(totalDays);
+        shinigami.remainingLife.eraseRemainingLife();
+    }
      @Override
      public void writeInDeathNote(Human victim) {
          Objects.requireNonNull(victim, "Victim must not be null");

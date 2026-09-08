@@ -25,21 +25,10 @@ public class RemainingLife {
         this.months = 0;
         this.days = 0;
     }
+
 //TODO: Tipar o parametro como deathNoteUser
-    public static void transferRemainingLife(Human human, Shinigami shinigami) {
-        Objects.requireNonNull(human, "Human must not be null");
-        Objects.requireNonNull(shinigami, "Shinigami must not be null");
 
-        int totalDays = Math.addExact(
-                human.remainingLife.getTotalDays(),
-                shinigami.remainingLife.getTotalDays()
-        );
-
-        human.remainingLife.setTotalDays(totalDays);
-        shinigami.remainingLife.eraseRemainingLife();
-    }
-
-    private void setTotalDays(int totalDays) {
+    public void setTotalDays(int totalDays) {
         this.years = totalDays / 365;
         int remainingDays = totalDays % 365;
         this.months = remainingDays / 30;
