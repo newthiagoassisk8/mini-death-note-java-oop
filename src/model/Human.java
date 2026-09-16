@@ -1,13 +1,20 @@
 package model;
+
+import model.exception.AlreadyDeadException;
+import model.exception.DeathNoteRuleException;
+import model.exception.MissingDeathNoteException;
+import model.exception.MissingShinigamiEyesException;
+
 import java.util.List;
 import java.util.Random;
 
-public class Human implements DeathNoteUser, ShinigamiEyes{
+public class Human implements DeathNoteUser, ShinigamiEyes {
     protected String name;
     protected DeathNote deathNote;
     private boolean isAlive;
     protected boolean hasShinigamiEyes;
     public RemainingLife remainingLife;
+
     public Human(String name, boolean hasShinigamiEyes, DeathNote deathNote) {
         this.name = name;
         this.isAlive = true;
@@ -22,17 +29,17 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
         this.hasShinigamiEyes = hasShinigamiEyes;
         this.remainingLife = new RemainingLife();
     }
-    public static Human create(){
+
+    public static Human create() {
         return new Human("Humano generico", false);
     }
 
-    public boolean isAlive(){
+    public boolean isAlive() {
         return this.isAlive;
     }
 
     public String getName() {
         return this.name;
-
     }
 
     @Override
@@ -44,7 +51,6 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
         if (new Random().nextBoolean()) {
             return List.of("Misa Amane");
         }
-
         return List.of();
     }
 
@@ -55,57 +61,54 @@ public class Human implements DeathNoteUser, ShinigamiEyes{
     protected void die() {
         markAsDead();
         if (this.deathNote != null) {
-
-            System.out.println("Go to Mu");
+            System.out.println(this.name + " não vai para o Céu nem para o Inferno. Vai para o Vazio (Mu).");
         } else {
-            System.out.println("Go to Heaven");
+            System.out.println(this.name + " foi para o além.");
         }
     }
+
     protected void markAsDead() {
         this.isAlive = false;
     }
 
-
     @Override
-    public void writeInDeathNote(Human victim) {
+    public void writeInDeathNote(Human victim) throws DeathNoteRuleException {
+        // Unchecked Exception: estado do próprio usuário
+        if (!isAlive()) {
+            throw new AlreadyDeadException(this.name + " não pode usar o caderno pois já está morto!");
+        }
 
-        if (!victim.isAlive()){
-            System.out.println("a vitima " + victim.name + " já está morto");
-            return;
+        // Unchecked Exception: falta de posse do objeto necessário
+        if (this.deathNote == null) {
+            throw new MissingDeathNoteException(this.name + " não possui um Death Note para escrever.");
         }
-        if (!isAlive()){
-            System.out.println(name + " não está vivo");
-            return;
+
+        // Checked Exception: violação de regra do Death Note
+        if (victim == null) {
+            throw new DeathNoteRuleException("Não é possível escrever uma vítima nula no Death Note.");
         }
-        if (deathNote == null) {
-            System.out.println(name + "não possui death note");
-            return;
+
+        // Unchecked Exception: estado inválido do alvo
+        if (!victim.isAlive()) {
+            throw new AlreadyDeadException("A vítima '" + victim.getName() + "' já está morta! Não surte efeito.");
         }
+
         deathNote.write(victim);
     }
 
     @Override
     public String seeRealName(Human target) {
         if (this.deathNote == null) {
-            throw new IllegalStateException(
-                    this.name + " não possui um Death Note"
-            );
+            throw new MissingDeathNoteException(this.name + " não possui um Death Note para ver nomes.");
         }
         return target.getName();
     }
 
-
-
     @Override
     public String seeLifeSpan(Human target) {
         if (!this.hasShinigamiEyes()) {
-            throw new IllegalStateException(
-                    this.name + " não possui os olhos de shinigami"
-            );
+            throw new MissingShinigamiEyesException(this.name + " não possui os olhos de Shinigami!");
         }
-
-
-        return  target.remainingLife.getRemainingLifeSpan();
-
+        return target.remainingLife.getRemainingLifeSpan();
     }
 }

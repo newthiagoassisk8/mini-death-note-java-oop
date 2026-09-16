@@ -24,10 +24,11 @@ public class RemainingLife {
         this.months = 0;
         this.days = 0;
     }
-
 //TODO: Tipar o parametro como deathNoteUser
 
     public void setTotalDays(int totalDays) {
+        // Conversão aproximada: considera 365 dias por ano e 30 dias por mês.
+        // A divisão inteira (/) calcula unidades completas; % calcula os dias que sobram.
         this.years = totalDays / 365;
         int remainingDays = totalDays % 365;
         this.months = remainingDays / 30;
