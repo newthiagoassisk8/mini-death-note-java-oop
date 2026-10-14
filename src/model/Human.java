@@ -30,6 +30,11 @@ public class Human implements DeathNoteUser, ShinigamiEyes {
         this.remainingLife = new RemainingLife();
     }
 
+    public void imprimeHumano(){
+        System.out.println(this.name);
+
+    }
+
     public static Human create() {
         return new Human("Humano generico", false);
     }

@@ -10,66 +10,27 @@ public class Main {
         Human matsuda = new Human("Touta Matsuda", false);
         Human misa = new Human("Misa Amane", true); // Misa tem os olhos de Shinigami
 
-        // -------------------------------------------------------------
-        // 1. FLUXO NORMAL (SUCESSO)
-        // -------------------------------------------------------------
-        System.out.println("--- 1. Execução Normal ---");
+        Human h1 = new Human("Near", false);
+        Human h2 = h1;
+
+
+
+        Human[] humans = {light, matsuda, misa};
+        Calculadora calculator = new Calculadora();
         try {
-            light.writeInDeathNote(matsuda);
-            System.out.println("Status do Matsuda: vivo = " + matsuda.isAlive());
-        } catch (DeathNoteRuleException e) {
+            int num1 = 1;
+            int num2 = 2;
+            Calculadora.Resultado resultado = calculator.alterValues(num1, num2, matsuda);
+            num1 = resultado.num1();
+            num2 = resultado.num2();
+            light = resultado.human();
+            System.out.println("depois da chamada da função");
+            System.out.println(light);
+            System.out.println(num1);
+            System.out.println(num2);
+        } catch (Exception e) {
             System.err.println("Erro de regra do Death Note: " + e.getMessage());
         }
 
-        System.out.println("\n-------------------------------------------------------------");
-
-        // -------------------------------------------------------------
-        // 2. UNCHECKED EXCEPTION (RuntimeException)
-        // Exemplo: Já está morto (AlreadyDeadException)
-        // O compilador NÃO obriga a colocar try-catch, mas podemos tratar!
-        // -------------------------------------------------------------
-        System.out.println("--- 2. Unchecked Exception: Tentando matar quem já morreu ---");
-        try {
-            System.out.println("Tentando escrever Matsuda novamente no caderno...");
-            light.writeInDeathNote(matsuda);
-        } catch (AlreadyDeadException e) {
-            System.out.println("[UNCHECKED CAPTURADA] " + e.getMessage());
-        } catch (DeathNoteRuleException e) {
-            System.out.println("[CHECKED CAPTURADA] " + e.getMessage());
-        }
-
-        System.out.println("\n-------------------------------------------------------------");
-
-        // -------------------------------------------------------------
-        // 3. UNCHECKED EXCEPTION (RuntimeException)
-        // Exemplo: Tentando usar olhos de Shinigami sem tê-los (MissingShinigamiEyesException)
-        // -------------------------------------------------------------
-        System.out.println("--- 3. Unchecked Exception: Light tentando ver expectativa de vida ---");
-        try {
-            System.out.println("Light tenta olhar para Misa...");
-            System.out.println(light.seeLifeSpan(misa));
-        } catch (MissingShinigamiEyesException e) {
-            System.out.println("[UNCHECKED CAPTURADA] " + e.getMessage());
-        }
-
-        System.out.println("\n-------------------------------------------------------------");
-
-        // -------------------------------------------------------------
-        // 4. CHECKED EXCEPTION (Exception)
-        // Exemplo: Violação de regra de negócio (DeathNoteRuleException)
-        // O Java nos OBRIGA a tratar ou declarar 'throws'!
-        // -------------------------------------------------------------
-        System.out.println("--- 4. Checked Exception: Violação de regra (vítima nula) ---");
-        try {
-            System.out.println("Tentando escrever vítima nula...");
-            light.writeInDeathNote(null);
-        } catch (DeathNoteRuleException e) {
-            System.out.println("[CHECKED CAPTURADA] " + e.getMessage());
-        } finally {
-            // O bloco finally SEMPRE executa, quer haja exceção ou não.
-            System.out.println("[FINALLY] Esse bloco sempre executa para limpeza ou log final.");
-        }
-
-        System.out.println("\n=== FIM DA DEMONSTRAÇÃO ===");
     }
 }
