@@ -35,6 +35,10 @@ public class Human implements DeathNoteUser, ShinigamiEyes {
 
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public static Human create() {
         return new Human("Humano generico", false);
     }

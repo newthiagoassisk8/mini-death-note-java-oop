@@ -7,7 +7,6 @@ public class Main {
 
         DeathNote deathNoteLight = new DeathNote();
         Human light = new Human("Light Yagami", false, deathNoteLight);
-        Human matsuda = new Human("Touta Matsuda", false);
         Human misa = new Human("Misa Amane", true); // Misa tem os olhos de Shinigami
 
         Human h1 = new Human("Near", false);
@@ -15,19 +14,20 @@ public class Main {
 
 
 
-        Human[] humans = {light, matsuda, misa};
         Calculadora calculator = new Calculadora();
         try {
             int num1 = 1;
             int num2 = 2;
+
+            Human matsuda = new Human("Touta Matsuda", false);
             Calculadora.Resultado resultado = calculator.alterValues(num1, num2, matsuda);
-            num1 = resultado.num1();
+            int foo = resultado.num1();
             num2 = resultado.num2();
             light = resultado.human();
-            System.out.println("depois da chamada da função");
-            System.out.println(light);
-            System.out.println(num1);
-            System.out.println(num2);
+            System.out.println(num1); // 1
+            System.out.println(resultado.num1()); //10
+            System.out.println(matsuda.getName()); // thiago
+            System.out.println(resultado.human().getName()); //thiago
         } catch (Exception e) {
             System.err.println("Erro de regra do Death Note: " + e.getMessage());
         }
